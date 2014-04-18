@@ -35,7 +35,7 @@ var cookieAPI = {
         }
         return decodeURIComponent(val);    
     },
-    empty: function() {
+    clear: function() {
         "use strict";
         var cookies = document.cookie.split(";");
         var i;

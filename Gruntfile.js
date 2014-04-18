@@ -6,7 +6,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     // Metadata.
     pkg: grunt.file.readJSON('cookie.js.json'),
-    name: 'sort',
+    name: 'cookie',
     banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
       '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
       '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
@@ -25,16 +25,6 @@ module.exports = function(grunt) {
         dest: 'dist/<%= name %>.min.js'
       }
     },
-    qunit: {
-      files: ['test/**/*.html'],
-      options: {
-        coverage: {
-          src: ['src/**/*.js'],
-          instrumentedFiles: "temp/",
-          lcovReport: "report/coverage"
-        }
-      }
-    },
     jshint: {
       gruntfile: {
         options: {
@@ -48,17 +38,6 @@ module.exports = function(grunt) {
         },
         src: ['src/**/*.js']
       },
-      test: {
-        options: {
-          jshintrc: 'test/.jshintrc'
-        },
-        src: ['test/**/*.js']
-      },      
-    },
-    shell: {
-      coverall: {
-        command: 'node_modules/coveralls/bin/coveralls.js < report/coverage/lcov.info'
-      }
     },
     watch: {
       gruntfile: {
@@ -85,8 +64,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'qunit', 'clean', 'uglify']);
-
-  // Travis task.
-  grunt.registerTask('travis', ['jshint', 'qunit', 'shell:coverall']);
+  grunt.registerTask('default', ['jshint', 'clean', 'uglify']);
 };
